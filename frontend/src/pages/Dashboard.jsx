@@ -21,33 +21,13 @@ import api from "../services/api";
 // Run `ipconfig` on Windows or `ifconfig` on Mac/Linux to find it.
 // Example: "192.168.1.5"
 // ============================================================
-const NETWORK_IP = "192.168.1.5";
-
-function getBackendPort() {
-  try {
-    const { port } = new URL(api.defaults.baseURL);
-    return port || "5000";
-  } catch {
-    return "5000";
-  }
-}
-
-function getQrBaseHost() {
-  const hostname = window.location.hostname;
-
-  if (hostname === "localhost" || hostname === "127.0.0.1") {
-    return NETWORK_IP;
-  }
-
-  return hostname;
-}
+const BACKEND_URL =
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://linkforge-5v5l.onrender.com";
 
 function getQrShortUrl(shortCode) {
-  const host = getQrBaseHost();
-  const port = getBackendPort();
-  return `http://${host}:${port}/${shortCode}`;
+  return `${BACKEND_URL}/${shortCode}`;
 }
-
 function QrCodeDisplay({ shortCode, size = 64, compact = false }) {
   const qrUrl = getQrShortUrl(shortCode);
 
@@ -187,7 +167,7 @@ function Dashboard() {
   };
 
   const copyUrl = (shortCode) => {
-    const shortUrl = `http://localhost:5000/${shortCode}`;
+    const shortUrl = `${BACKEND_URL}/${shortCode}`;
     navigator.clipboard.writeText(shortUrl);
     toast.success("Short URL Copied!");
   };
