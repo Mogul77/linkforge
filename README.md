@@ -25,9 +25,9 @@ https://linkforge-5v5l.onrender.com/
 
 # 🎥 Demo Video
 
-**YouTube / Loom Video**
+**YouTube**
 
-https://your-demo-video-link
+[https://your-demo-video-link](https://www.youtube.com/watch?v=U2hQbl4VcVY)
 
 ---
 
